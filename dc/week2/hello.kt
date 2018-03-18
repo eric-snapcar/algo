@@ -5,20 +5,22 @@ import java.io.InputStream
 
 fun main(args : Array<String>) {
   val array = listOf(1, 2, 3)
-  mergeSort(array)
+  println(mergeSort(array))
 }
-fun mergeSort(array:List<Int>){
-
+fun mergeSort(array:List<Int>) : List<Int>{
   var size = array.size
-
-  val halfSize = array.size/2
-  val leftArray = array.subList(0,halfSize)
-  val rightArray = array.subList(halfSize,size)
-  println(leftArray)
-  println(rightArray)
+  if (size > 1) {
+    val halfSize = array.size/2
+    val leftArray = array.subList(0,halfSize)
+    val rightArray = array.subList(halfSize,size)
+    return merge(leftArray,rightArray)
+  }else {
+    println("size 1")
+    return array
+  }
 }
-fun merge(leftArraySorted:List<Int>,rightArraySorted:List<Int>){
-
+fun merge(leftArraySorted:List<Int>,rightArraySorted:List<Int>): List<Int>{
+  return leftArraySorted
 }
 fun test(){
   val inputStream: InputStream = File("data.txt").inputStream()
