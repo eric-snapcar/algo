@@ -8,15 +8,17 @@ fun main(args : Array<String>) {
   mergeSort(array)
 }
 fun mergeSort(array:List<Int>){
-  println(array)
-  println(array.size)
-  println(array.size/2)
+
   var size = array.size
+
   val halfSize = array.size/2
   val leftArray = array.subList(0,halfSize)
   val rightArray = array.subList(halfSize,size)
   println(leftArray)
   println(rightArray)
+}
+fun merge(leftArraySorted:List<Int>,rightArraySorted:List<Int>){
+
 }
 fun test(){
   val inputStream: InputStream = File("data.txt").inputStream()
