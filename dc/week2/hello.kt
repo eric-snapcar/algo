@@ -4,7 +4,7 @@ import java.io.File
 import java.io.InputStream
 
 fun main(args : Array<String>) {
-  val array = listOf(2,1, 3)
+  val array = listOf(10,80,33,2,1,3,6)
   println(mergeSort(array))
 }
 fun mergeSort(array:List<Int>) : List<Int>{
@@ -13,9 +13,8 @@ fun mergeSort(array:List<Int>) : List<Int>{
     val halfSize = array.size/2
     val leftArray = array.subList(0,halfSize)
     val rightArray = array.subList(halfSize,size)
-    return merge(leftArray,rightArray)
+    return merge(mergeSort(leftArray),mergeSort(rightArray))
   }else {
-    println("size 1")
     return array
   }
 }
