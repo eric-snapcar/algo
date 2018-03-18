@@ -4,7 +4,7 @@ import java.io.File
 import java.io.InputStream
 
 fun main(args : Array<String>) {
-  val array = listOf(10,80,33,2,1,3,6)
+  val array = getArray()
   println(mergeSort(array))
 }
 fun mergeSort(array:List<Int>) : List<Int>{
@@ -42,8 +42,13 @@ fun merge(leftArraySorted:List<Int>,rightArraySorted:List<Int>): List<Int>{
   }
   return mergeSorted
 }
-fun test(){
-  val inputStream: InputStream = File("data.txt").inputStream()
-  val inputString = inputStream.bufferedReader().use { it.readText() }
-  println(inputString)
+fun getArray():List<Int>{
+  val reader = File("data.txt").inputStream().bufferedReader()
+  val iterator = reader.lines().iterator()
+  var list = mutableListOf<Int>()
+  while(iterator.hasNext()) {
+    list.add(iterator.next().toInt())
+  }
+  reader.close()
+  return list
 }
