@@ -4,7 +4,11 @@ import java.io.File
 import java.io.InputStream
 
 fun main(args : Array<String>) {
-  test()
+  val array = listOf(1, 2, 3)
+  mergeSort(array)
+}
+fun mergeSort(array:List<Int>){
+  println(array)
 }
 fun test(){
   val inputStream: InputStream = File("data.txt").inputStream()
