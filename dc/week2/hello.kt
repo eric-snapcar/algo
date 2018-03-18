@@ -4,7 +4,7 @@ import java.io.File
 import java.io.InputStream
 
 fun main(args : Array<String>) {
-  val array = listOf(1, 2, 3)
+  val array = listOf(2,1, 3)
   println(mergeSort(array))
 }
 fun mergeSort(array:List<Int>) : List<Int>{
@@ -20,7 +20,28 @@ fun mergeSort(array:List<Int>) : List<Int>{
   }
 }
 fun merge(leftArraySorted:List<Int>,rightArraySorted:List<Int>): List<Int>{
-  return leftArraySorted
+  var mergeSorted = mutableListOf<Int>()
+  var leftArraySorted_ = leftArraySorted.toMutableList()
+  var rightArraySorted_ = rightArraySorted.toMutableList()
+  while(leftArraySorted_.size > 0 || rightArraySorted_.size > 0){
+    if(leftArraySorted_.size == 0 ){
+      mergeSorted.add(rightArraySorted_.first())
+      rightArraySorted_.removeAt(0)
+    }else if(rightArraySorted_.size == 0){
+      mergeSorted.add(leftArraySorted_.first())
+      leftArraySorted_.removeAt(0)
+    }
+    else {
+      if(leftArraySorted_.first() < rightArraySorted_.first()){
+        mergeSorted.add(leftArraySorted_.first())
+        leftArraySorted_.removeAt(0)
+      }else {
+        mergeSorted.add(rightArraySorted_.first())
+        rightArraySorted_.removeAt(0)
+      }
+    }
+  }
+  return mergeSorted
 }
 fun test(){
   val inputStream: InputStream = File("data.txt").inputStream()
