@@ -5,7 +5,7 @@ import java.io.InputStream
 
 fun main(args : Array<String>) {
   val array = getArray()
-  println(mergeSort(array))
+  // println(mergeSort(array))
 }
 data class InversionData(val count: Int, val sortedList: List<Int> )
 fun countInversion(array:List<Int>) : List<Int>{
@@ -42,6 +42,7 @@ fun countInversionMerge(leftArraySorted:List<Int>,rightArraySorted:List<Int>): L
       }else {
         mergeSorted.add(rightArraySorted_.first())
         rightArraySorted_.removeAt(0)
+        splitCount += leftArraySorted_.size
       }
     }
   }

@@ -4,7 +4,8 @@ import java.io.File
 import java.io.InputStream
 
 fun main(args : Array<String>) {
-  val array = getArray()
+  // val array = getArray()
+  val array = listOf(1, 3, 5, 2,4,6)
   println(mergeSort(array))
 }
 fun mergeSort(array:List<Int>) : List<Int>{
