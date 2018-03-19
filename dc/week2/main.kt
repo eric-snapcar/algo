@@ -2,13 +2,15 @@
 
 import java.io.File
 import java.io.InputStream
-
+// kotlinc main.kt -include-runtime -d main.jar
+// java -jar main.jar
 fun main(args : Array<String>) {
-  val array = getArray()
-  // println(mergeSort(array))
+  // val array = getArray()
+  val array = listOf(1, 3, 5, 2,4,6)
+  println(countInversion(array))
 }
 data class InversionData(val count: Int, val sortedList: List<Int> )
-fun countInversion(array:List<Int>) : List<Int>{
+fun countInversion(array:List<Int>) : InversionData{
   var size = array.size
   if (size > 1) {
     val halfSize = array.size/2
@@ -19,10 +21,10 @@ fun countInversion(array:List<Int>) : List<Int>{
     val (splitCount,arraySorted) = countInversionMerge(leftArraySorted,rightArraySorted)
     return InversionData(leftArrayCount+rightArrayCount+splitCount,arraySorted)
   }else {
-    return InversionData(array,1)
+    return InversionData(0,array)
   }
 }
-fun countInversionMerge(leftArraySorted:List<Int>,rightArraySorted:List<Int>): List<Int>{
+fun countInversionMerge(leftArraySorted:List<Int>,rightArraySorted:List<Int>): InversionData {
   var mergeSorted = mutableListOf<Int>()
   var splitCount = 0
   var leftArraySorted_ = leftArraySorted.toMutableList()
@@ -46,7 +48,7 @@ fun countInversionMerge(leftArraySorted:List<Int>,rightArraySorted:List<Int>): L
       }
     }
   }
-  return InversionData(mergeSorted,splitCount)
+  return InversionData(splitCount,mergeSorted)
 }
 fun getArray():List<Int>{
   val reader = File("data.txt").inputStream().bufferedReader()

@@ -2,10 +2,10 @@
 
 import java.io.File
 import java.io.InputStream
-
+// kotlinc mergeSort.kt -include-runtime -d mergeSort.jar
+// java -jar mergeSort.jar
 fun main(args : Array<String>) {
-  // val array = getArray()
-  val array = listOf(1, 3, 5, 2,4,6)
+  val array = getArray()
   println(mergeSort(array))
 }
 fun mergeSort(array:List<Int>) : List<Int>{
