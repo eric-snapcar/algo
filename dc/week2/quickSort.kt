@@ -19,7 +19,18 @@ fun quickSort(array:List<Int>) : List<Int>{
 }
 data class PartitionData(val pivotValue: Int, val leftArray: List<Int>, val rightArray: List<Int> )
 fun partition(pivotIndex : Int,array : List<Int>): PartitionData {
-  return PartitionData(1,array,array)
+  val pivotValue = array[pivotIndex]
+  var leftArray = mutableListOf<Int>()
+  var rightArray = mutableListOf<Int>()
+  for (value: Int in array) {
+    if(value < pivotValue ){
+      leftArray.add(value)
+    }
+    else if(value > pivotValue){
+      rightArray.add(value)
+    }
+  }
+  return PartitionData(pivotValue,leftArray,rightArray)
 }
 fun merge(leftArraySorted:List<Int>,rightArraySorted:List<Int>): List<Int>{
   var mergeSorted = mutableListOf<Int>()
