@@ -3,14 +3,23 @@ import java.io.File
 import java.io.InputStream
 // kotlinc quickSort.kt -include-runtime -d quickSort.jar
 // java -jar quickSort.jar
+
+import java.util.Random
+
+val random = Random()
+
+fun rand(from: Int, to: Int) : Int {
+    return random.nextInt(to - from) + from
+}
+
 fun main(args : Array<String>) {
   val array = getArray()
-  // println(quickSort(array))
+  println(quickSort(array))
 }
 fun quickSort(array:List<Int>) : List<Int>{
   var size = array.size
   if (size > 1) {
-    val pivotIndex =  size/2
+    val pivotIndex =  rand(0, size - 1)
     val (pivotValue, leftArray, rightArray) = partition(pivotIndex,array)
     return quickSort(leftArray) + listOf(pivotValue) + quickSort(rightArray)
   }else {
@@ -31,30 +40,6 @@ fun partition(pivotIndex : Int,array : List<Int>): PartitionData {
     }
   }
   return PartitionData(pivotValue,leftArray,rightArray)
-}
-fun merge(leftArraySorted:List<Int>,rightArraySorted:List<Int>): List<Int>{
-  var mergeSorted = mutableListOf<Int>()
-  var leftArraySorted_ = leftArraySorted.toMutableList()
-  var rightArraySorted_ = rightArraySorted.toMutableList()
-  while(leftArraySorted_.size > 0 || rightArraySorted_.size > 0){
-    if(leftArraySorted_.size == 0 ){
-      mergeSorted.add(rightArraySorted_.first())
-      rightArraySorted_.removeAt(0)
-    }else if(rightArraySorted_.size == 0){
-      mergeSorted.add(leftArraySorted_.first())
-      leftArraySorted_.removeAt(0)
-    }
-    else {
-      if(leftArraySorted_.first() < rightArraySorted_.first()){
-        mergeSorted.add(leftArraySorted_.first())
-        leftArraySorted_.removeAt(0)
-      }else {
-        mergeSorted.add(rightArraySorted_.first())
-        rightArraySorted_.removeAt(0)
-      }
-    }
-  }
-  return mergeSorted
 }
 fun getArray():List<Int>{
   val reader = File("data.txt").inputStream().bufferedReader()
