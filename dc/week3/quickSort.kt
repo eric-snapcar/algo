@@ -8,16 +8,14 @@ import java.util.Random
 
 val random = Random()
 
-fun rand(from: Int, to: Int) : Int {
-    return random.nextInt(to - from) + from
-}
 
 fun main(args : Array<String>) {
   val array = getArray()
-  println(quickSort(array))
+  val (comparaisons, sortedArray ) = quickSort(array)
+  println(comparaisons)
 }
 data class QuickSortData(val comparaisons: Int, val sortedArray : List<Int>)
-fun quickSort(array:List<Int>) : List<Int>{
+fun quickSort(array:List<Int>) : QuickSortData {
   var size = array.size
   if (size > 1) {
     val pivotIndex =  rand(0, size - 1)
@@ -26,7 +24,7 @@ fun quickSort(array:List<Int>) : List<Int>{
     val (comparaisonsRight, rightArraySorted) = quickSort(rightArray)
     return QuickSortData(size - 1 + comparaisonsLeft + comparaisonsRight, leftArraySorted + listOf(pivotValue) + rightArraySorted)
   }else {
-    return return QuickSortData(0,array)
+    return QuickSortData(0,array)
   }
 }
 data class PartitionData(val pivotValue: Int, val leftArray: List<Int>, val rightArray: List<Int> )
@@ -53,4 +51,7 @@ fun getArray():List<Int>{
   }
   reader.close()
   return list
+}
+fun rand(from: Int, to: Int) : Int {
+    return random.nextInt(to - from) + from
 }
