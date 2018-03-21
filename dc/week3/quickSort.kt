@@ -16,14 +16,17 @@ fun main(args : Array<String>) {
   val array = getArray()
   println(quickSort(array))
 }
+data class QuickSortData(val comparaisons: Int, val sortedArray : List<Int>)
 fun quickSort(array:List<Int>) : List<Int>{
   var size = array.size
   if (size > 1) {
     val pivotIndex =  rand(0, size - 1)
     val (pivotValue, leftArray, rightArray) = partition(pivotIndex,array)
-    return quickSort(leftArray) + listOf(pivotValue) + quickSort(rightArray)
+    val (comparaisonsLeft, leftArraySorted) = quickSort(leftArray)
+    val (comparaisonsRight, rightArraySorted) = quickSort(rightArray)
+    return QuickSortData(size - 1 + comparaisonsLeft + comparaisonsRight, leftArraySorted + listOf(pivotValue) + rightArraySorted)
   }else {
-    return array
+    return return QuickSortData(0,array)
   }
 }
 data class PartitionData(val pivotValue: Int, val leftArray: List<Int>, val rightArray: List<Int> )
