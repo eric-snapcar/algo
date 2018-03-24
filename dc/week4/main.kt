@@ -7,7 +7,8 @@ import java.util.Random
 val random = Random()
 fun main(args : Array<String>) {
   val array = getArray()
-  println(array)
+  println(array[0])
+  println(mergeVertex(array[0],array[1]))
 }
 data class QuickSortData(val comparaisons: Int, val sortedArray : List<Int>)
 fun quickSort(array:List<Int>) : QuickSortData {
@@ -21,6 +22,10 @@ fun quickSort(array:List<Int>) : QuickSortData {
   }else {
     return QuickSortData(0,array)
   }
+}
+
+fun mergeVertex(vertex1 : List<String>,vertex2 : List<String>): List<String> {
+  return vertex1
 }
 data class PartitionData(val pivotValue: Int, val leftArray: List<Int>, val rightArray: List<Int> )
 fun partition(pivotIndex : Int,array : List<Int>): PartitionData {
