@@ -37,12 +37,12 @@ fun partition(pivotIndex : Int,array : List<Int>): PartitionData {
   }
   return PartitionData(pivotValue,leftArray,rightArray)
 }
-fun getArray():List<String>{
+fun getArray():List<List<String>>{
   val reader = File("data.txt").inputStream().bufferedReader()
   val iterator = reader.lines().iterator()
-  var list = mutableListOf<String>()
+  var list = mutableListOf<List<String>>()
   while(iterator.hasNext()) {
-    list.add(iterator.next())
+    list.add(iterator.next().split(" "))
   }
   reader.close()
   return list
