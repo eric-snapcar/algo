@@ -6,28 +6,32 @@ import java.io.InputStream
 import java.util.Random
 val random = Random()
 fun main(args : Array<String>) {
-  val array = getArray()
-  println(array.size)
+  val vertices = getVertices()
 
-  println(array[0])
-  println(array[1])
-  println(array[1].edges.size)
-  println(array[2])
-  println(array[2].edges.size)
 
-  // println(mergeVertex(array[0],array[1]))
 }
-data class QuickSortData(val comparaisons: Int, val sortedArray : List<Int>)
-
-// data class Vertex(val origin: String, val edges : List<String>)
-
-class Vertex( list : List<String> ){
-    val edges = list.subList(1,list.size);
-    val origin = list[0]
+class Vertex( val origin : String , val edges :  List<String>){
     init {
-      //
+      println("Vertex init")
+      println(edges)
+      println(origin)
+    }
+    constructor(list : List<String> ) : this(list[0],list.subList(1,list.size)) {
     }
 }
+fun getVertices():List<Vertex>{
+  val reader = File("data.txt").inputStream().bufferedReader()
+  val iterator = reader.lines().iterator()
+  var list = mutableListOf<Vertex>()
+  while(iterator.hasNext()) {
+    val list_ = iterator.next().split("	").dropLast(1)
+    val vertex = Vertex(list_)
+    list.add(vertex)
+  }
+  reader.close()
+  return list
+}
+/*
 fun quickSort(array:List<Int>) : QuickSortData {
   var size = array.size
   if (size > 1) {
@@ -40,7 +44,7 @@ fun quickSort(array:List<Int>) : QuickSortData {
     return QuickSortData(0,array)
   }
 }
-
+*/
 fun mergeVertex(vertex1 : List<String>,vertex2 : List<String>): List<String> {
   return vertex1
 }
@@ -58,18 +62,6 @@ fun partition(pivotIndex : Int,array : List<Int>): PartitionData {
     }
   }
   return PartitionData(pivotValue,leftArray,rightArray)
-}
-fun getArray():List<Vertex>{
-  val reader = File("data.txt").inputStream().bufferedReader()
-  val iterator = reader.lines().iterator()
-  var list = mutableListOf<Vertex>()
-  while(iterator.hasNext()) {
-    val list_ = iterator.next().split("	").dropLast(1)
-    val vertex = Vertex(list_)
-    list.add(vertex)
-  }
-  reader.close()
-  return list
 }
 fun rand(from: Int, to: Int) : Int {
     return random.nextInt(to - from) + from
