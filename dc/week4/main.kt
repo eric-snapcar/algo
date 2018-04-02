@@ -10,11 +10,10 @@ fun main(args : Array<String>) {
   println(array.size)
 
   println(array[0])
-  println(array[0].size)
   println(array[1])
-  println(array[1].size)
+  println(array[1].edges.size)
   println(array[2])
-  println(array[2].size)
+  println(array[2].edges.size)
 
   // println(mergeVertex(array[0],array[1]))
 }
@@ -26,10 +25,7 @@ class Vertex( list : List<String> ){
     val edges = list.subList(1,list.size);
     val origin = list[0]
     init {
-      println("Vertex")
-      println(list)
-      println(origin)
-      println(edges)
+      //
     }
 }
 fun quickSort(array:List<Int>) : QuickSortData {
@@ -63,14 +59,14 @@ fun partition(pivotIndex : Int,array : List<Int>): PartitionData {
   }
   return PartitionData(pivotValue,leftArray,rightArray)
 }
-fun getArray():List<List<String>>{
+fun getArray():List<Vertex>{
   val reader = File("data.txt").inputStream().bufferedReader()
   val iterator = reader.lines().iterator()
-  var list = mutableListOf<List<String>>()
+  var list = mutableListOf<Vertex>()
   while(iterator.hasNext()) {
     val list_ = iterator.next().split("	").dropLast(1)
-    list.add(list_)
     val vertex = Vertex(list_)
+    list.add(vertex)
   }
   reader.close()
   return list
