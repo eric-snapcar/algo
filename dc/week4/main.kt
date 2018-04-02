@@ -72,6 +72,7 @@ fun getArray():List<List<String>>{
   while(iterator.hasNext()) {
     val list_ = iterator.next().split("	")
     list.add(list_)
+    val vertex = Vertex(list_)
   }
   reader.close()
   return list
