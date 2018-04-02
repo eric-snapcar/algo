@@ -8,14 +8,21 @@ val random = Random()
 fun main(args : Array<String>) {
   val array = getArray()
   println(array.size)
-  val test1 = array[0]
-  println(test1)
-  println(test1.size)
+
+  println(array[0])
+  println(array[0].size)
   println(array[1])
   println(array[1].size)
+  println(array[2])
+  println(array[2].size)
+
   // println(mergeVertex(array[0],array[1]))
 }
 data class QuickSortData(val comparaisons: Int, val sortedArray : List<Int>)
+
+data class Vertex(val origin: String, val edges : List<String>)
+ 
+
 fun quickSort(array:List<Int>) : QuickSortData {
   var size = array.size
   if (size > 1) {
@@ -30,6 +37,9 @@ fun quickSort(array:List<Int>) : QuickSortData {
 }
 
 fun mergeVertex(vertex1 : List<String>,vertex2 : List<String>): List<String> {
+
+
+
   return vertex1
 }
 data class PartitionData(val pivotValue: Int, val leftArray: List<Int>, val rightArray: List<Int> )
