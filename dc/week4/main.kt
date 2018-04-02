@@ -8,6 +8,7 @@ val random = Random()
 fun main(args : Array<String>) {
   val vertices = getVertices()
   println(vertices[0]);
+  println(vertices[1]);
   println(Vertex.merge(vertices[0],vertices[1]))
 }
 data class Vertex( val origin : String , val edges :  List<String>){
@@ -22,7 +23,12 @@ data class Vertex( val origin : String , val edges :  List<String>){
     }
     companion object {
       fun merge(vertex1 : Vertex, vertex2 : Vertex): Vertex {
-        return vertex2
+        val origin1 = vertex1.origin
+        val origin2 = vertex2.origin
+        val edges1 = vertex1.edges
+        val edges2 = vertex2.edges
+        val vertex = Vertex(origin1,edges2)
+        return vertex
       }
     }
 }
