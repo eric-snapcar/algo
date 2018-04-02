@@ -23,10 +23,11 @@ data class QuickSortData(val comparaisons: Int, val sortedArray : List<Int>)
 // data class Vertex(val origin: String, val edges : List<String>)
 
 class Vertex( list : List<String> ){
-    val edges = "edges"
-    val origin = "origin"
+    val edges = list.subList(1,list.size);
+    val origin = list[0]
     init {
       println("Vertex")
+      println(list)
       println(origin)
       println(edges)
     }
@@ -45,9 +46,6 @@ fun quickSort(array:List<Int>) : QuickSortData {
 }
 
 fun mergeVertex(vertex1 : List<String>,vertex2 : List<String>): List<String> {
-
-
-
   return vertex1
 }
 data class PartitionData(val pivotValue: Int, val leftArray: List<Int>, val rightArray: List<Int> )
@@ -70,7 +68,7 @@ fun getArray():List<List<String>>{
   val iterator = reader.lines().iterator()
   var list = mutableListOf<List<String>>()
   while(iterator.hasNext()) {
-    val list_ = iterator.next().split("	")
+    val list_ = iterator.next().split("	").dropLast(1)
     list.add(list_)
     val vertex = Vertex(list_)
   }
