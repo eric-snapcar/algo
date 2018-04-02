@@ -7,8 +7,13 @@ import java.util.Random
 val random = Random()
 fun main(args : Array<String>) {
   val array = getArray()
-  println(array[0])
-  println(mergeVertex(array[0],array[1]))
+  println(array.size)
+  val test1 = array[0]
+  println(test1)
+  println(test1.size)
+  println(array[1])
+  println(array[1].size)
+  // println(mergeVertex(array[0],array[1]))
 }
 data class QuickSortData(val comparaisons: Int, val sortedArray : List<Int>)
 fun quickSort(array:List<Int>) : QuickSortData {
@@ -47,7 +52,8 @@ fun getArray():List<List<String>>{
   val iterator = reader.lines().iterator()
   var list = mutableListOf<List<String>>()
   while(iterator.hasNext()) {
-    list.add(iterator.next().split(" "))
+    val list_ = iterator.next().split("	")
+    list.add(list_)
   }
   reader.close()
   return list
