@@ -20,9 +20,17 @@ fun main(args : Array<String>) {
 }
 data class QuickSortData(val comparaisons: Int, val sortedArray : List<Int>)
 
-data class Vertex(val origin: String, val edges : List<String>)
- 
+// data class Vertex(val origin: String, val edges : List<String>)
 
+class Vertex( list : List<String> ){
+    val edges = "edges"
+    val origin = "origin"
+    init {
+      println("Vertex")
+      println(origin)
+      println(edges)
+    }
+}
 fun quickSort(array:List<Int>) : QuickSortData {
   var size = array.size
   if (size > 1) {
