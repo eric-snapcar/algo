@@ -10,6 +10,24 @@ fun main(args : Array<String>) {
   println(vertices[0]);
   println(vertices[1]);
   println(Vertex.merge(vertices[0],vertices[1]))
+  val list = listOf(1, 16, 3, 7, 17, 24, 34, 23, 11, 2)
+  println(getRandomElements(list,2));
+  println(getRandomElements(list,2));
+  println(getRandomElements(list,2));
+/*
+  println("The list consists of the following numbers:\n${list}")
+
+  // notice we can call our extension functions as if they were regular member functions of List
+  println("\nA randomly selected element from the list is ${list.getRandomElement()}")
+  println("\nA random sequence of 5 elements from the list is ${list.getRandomElements(5)}")
+  */
+}
+
+fun getRandomElements(list:  List<Any>,numberOfElements: Int): List<Any>? {
+    if (numberOfElements > list.size) {
+        return null
+    }
+    return list.shuffled().take(numberOfElements)
 }
 data class Vertex( val origin : String , val edges :  List<String>){
   /*
@@ -27,7 +45,12 @@ data class Vertex( val origin : String , val edges :  List<String>){
         val origin2 = vertex2.origin
         val edges1 = vertex1.edges
         val edges2 = vertex2.edges
-        val vertex = Vertex(origin1,(edges2 + edges1).filter { s -> s != origin1 || s != origin2 })
+
+
+
+        val edges = (edges2 + edges1).filter { s -> s != origin1 || s != origin2 }
+        // Enlever les boucles internes en filtrant origin1 et origin2 de edges1 et edges2
+        val vertex = Vertex(origin1,edges)
         return vertex
       }
     }
@@ -79,3 +102,14 @@ fun partition(pivotIndex : Int,array : List<Int>): PartitionData {
 fun rand(from: Int, to: Int) : Int {
     return random.nextInt(to - from) + from
 }
+
+
+/*
+fun main(args: Array<String>) {
+    val list = listOf(1, 16, 3, 7, 17, 24, 34, 23, 11, 2)
+    println("The list consists of the following numbers:\n${list}")
+
+    // notice we can call our extension functions as if they were regular member functions of List
+    println("\nA randomly selected element from the list is ${list.getRandomElement()}")
+    println("\nA random sequence of 5 elements from the list is ${list.getRandomElements(5)}")
+}*/
