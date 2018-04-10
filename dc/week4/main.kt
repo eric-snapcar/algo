@@ -27,7 +27,6 @@ data class Vertex( val origin : String , val edges :  List<String>){
         val edges1 = vertex1.edges
         val edges2 = vertex2.edges
         val edges = (edges2 + edges1).filter { s -> s != origin1 || s != origin2 }
-        // Enlever les boucles internes en filtrant origin1 et origin2 de edges1 et edges2
         val vertex = Vertex(origin1,edges)
         return vertex
       }
