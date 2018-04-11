@@ -7,17 +7,18 @@ import java.util.Random
 val random = Random()
 fun main(args : Array<String>) {
   val vertices = getVertices()
-  println(getRandomElements(vertices,2));
-  println(getRandomElements(vertices,2));
-  println(getRandomElements(vertices,2));
+  val temp = getRandomElements(vertices,2)
+  println(temp?.list?.size);
+  println(temp?.elements);
 }
 
 data class GetRandomElementsData(val list: List<Any>, val elements : List<Any>)
-fun getRandomElements(list:  List<Any>,numberOfElements: Int): List<Any>? {
+fun getRandomElements(list:  List<Any>,numberOfElements: Int): GetRandomElementsData? {
     if (numberOfElements > list.size) {
         return null
-    }  
-    return list.shuffled().take(numberOfElements)
+    }
+    val elements = list.shuffled().take(numberOfElements)
+    return GetRandomElementsData(list.drop(numberOfElements),elements)
 }
 data class Vertex( val origin : String , val edges :  List<String>){
     constructor(list : List<String> ) : this(list[0],list.subList(1,list.size)) {
