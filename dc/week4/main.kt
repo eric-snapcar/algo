@@ -11,10 +11,12 @@ fun main(args : Array<String>) {
   println(getRandomElements(vertices,2));
   println(getRandomElements(vertices,2));
 }
+
+data class GetRandomElementsData(val list: List<Any>, val elements : List<Any>)
 fun getRandomElements(list:  List<Any>,numberOfElements: Int): List<Any>? {
     if (numberOfElements > list.size) {
         return null
-    }
+    }  
     return list.shuffled().take(numberOfElements)
 }
 data class Vertex( val origin : String , val edges :  List<String>){
