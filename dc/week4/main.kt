@@ -6,10 +6,11 @@ import java.io.InputStream
 import java.util.Random
 val random = Random()
 fun main(args : Array<String>) {
-  val vertices = getVertices()
-  val temp = getRandomElements(vertices,2)
-  println(temp?.list?.size);
-  println(temp?.elements);
+  var vertices = getVertices()
+  var temp = getRandomElements(vertices,2)
+  vertices = temp?.list as List<Vertex>
+  println(vertices.size);
+  println(temp.elements);
 }
 
 data class GetRandomElementsData(val list: List<Any>, val elements : List<Any>)
