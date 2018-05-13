@@ -7,13 +7,15 @@ import java.util.Random
 val random = Random()
 fun main(args : Array<String>) {
   var vertices = getVertices()
-  var temp = getRandom(vertices,2)
-  var chosenVertices = temp[0] as List<Vertex>
-  var mergedVertices = Vertex.merge(chosenVertices[0],chosenVertices[1])
-  println(chosenVertices)
-  println(mergedVertices)
-  var remainingVertices = temp[1] as? List<Vertex>
-
+  while (vertices.size > 2) {
+    var temp = getRandom(vertices,2)
+    var chosenVertices = temp[0] as List<Vertex>
+    var mergedVertices = Vertex.merge(chosenVertices[0],chosenVertices[1])
+    var remainingVertices = temp[1] as List<Vertex>
+    vertices = remainingVertices + mergedVertices
+  }
+  println(vertices.size)
+  println(vertices)
 }
 fun getRandom(list:  List<Any>,number: Int): List<List<Any>> {
     if (number > list.size) {
