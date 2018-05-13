@@ -33,7 +33,7 @@ data class Vertex( val origin : String , val edges :  List<String>){
         val origin2 = vertex2.origin
         val edges1 = vertex1.edges
         val edges2 = vertex2.edges
-        val edges = (edges2 + edges1).filter { s -> s != origin1 || s != origin2 }
+        val edges = (edges2 + edges1).filter { s -> s == origin1 && s == origin2 }
         val vertex = Vertex(origin1,edges)
         return vertex
       }
