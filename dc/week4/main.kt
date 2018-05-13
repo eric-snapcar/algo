@@ -8,13 +8,13 @@ val random = Random()
 fun main(args : Array<String>) {
   var vertices = getVertices()
   var temp = getRandom(vertices,2)
-  var chosenVertices = temp[0]
-  var remainingVertices = temp[1]
-  println(chosenVertices.size)
-  println(remainingVertices.size)
+  var chosenVertices = temp[0] as List<Vertex>
+  var mergedVertices = Vertex.merge(chosenVertices[0],chosenVertices[1])
+  println(chosenVertices)
+  println(mergedVertices)
+  var remainingVertices = temp[1] as? List<Vertex>
+
 }
-
-
 fun getRandom(list:  List<Any>,number: Int): List<List<Any>> {
     if (number > list.size) {
         return listOf(listOf(), list)
