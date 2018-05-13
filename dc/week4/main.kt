@@ -7,9 +7,11 @@ import java.util.Random
 val random = Random()
 fun main(args : Array<String>) {
   var vertices = getVertices()
-  var temp = getRandom(vertices,200)
-  println(temp[0].size)
-  println(temp[1].size)
+  var temp = getRandom(vertices,2)
+  var chosenVertices = temp[0]
+  var remainingVertices = temp[1]
+  println(chosenVertices.size)
+  println(remainingVertices.size)
 }
 
 
