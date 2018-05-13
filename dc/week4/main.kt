@@ -8,9 +8,6 @@ val random = Random()
 fun main(args : Array<String>) {
   var vertices = getVertices()
   var temp = getRandomElements(vertices,2)
-  vertices = temp?.list as List<Vertex>
-  println(vertices.size);
-  println(temp.elements);
 }
 
 data class GetRandomElementsData(val list: List<Any>, val elements : List<Any>)
@@ -18,8 +15,8 @@ fun getRandomElements(list:  List<Any>,numberOfElements: Int): GetRandomElements
     if (numberOfElements > list.size) {
         return null
     }
-    val elements = list.shuffled().take(numberOfElements)
-    return GetRandomElementsData(list.drop(numberOfElements),elements)
+    val elements = list.shuffled()
+    return GetRandomElementsData(elements.drop(numberOfElements),elements.take(numberOfElements))
 }
 data class Vertex( val origin : String , val edges :  List<String>){
     constructor(list : List<String> ) : this(list[0],list.subList(1,list.size)) {
