@@ -7,16 +7,18 @@ import java.util.Random
 val random = Random()
 fun main(args : Array<String>) {
   var vertices = getVertices()
-  var temp = getRandomElements(vertices,2)
+  var temp = getRandom(vertices,200)
+  println(temp[0].size)
+  println(temp[1].size)
 }
 
-data class GetRandomElementsData(val list: List<Any>, val elements : List<Any>)
-fun getRandomElements(list:  List<Any>,numberOfElements: Int): GetRandomElementsData? {
-    if (numberOfElements > list.size) {
-        return null
+
+fun getRandom(list:  List<Any>,number: Int): List<List<Any>> {
+    if (number > list.size) {
+        return listOf(listOf(), list)
     }
-    val elements = list.shuffled()
-    return GetRandomElementsData(elements.drop(numberOfElements),elements.take(numberOfElements))
+    val listShuffled = list.shuffled()
+    return listOf(listShuffled.take(number), listShuffled.drop(number))
 }
 data class Vertex( val origin : String , val edges :  List<String>){
     constructor(list : List<String> ) : this(list[0],list.subList(1,list.size)) {
@@ -45,15 +47,3 @@ fun getVertices():List<Vertex>{
   reader.close()
   return list
 }
-
-
-
-/*
-fun main(args: Array<String>) {
-    val list = listOf(1, 16, 3, 7, 17, 24, 34, 23, 11, 2)
-    println("The list consists of the following numbers:\n${list}")
-
-    // notice we can call our extension functions as if they were regular member functions of List
-    println("\nA randomly selected element from the list is ${list.getRandomElement()}")
-    println("\nA random sequence of 5 elements from the list is ${list.getRandomElements(5)}")
-}*/
